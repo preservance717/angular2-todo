@@ -1,1 +1,10 @@
-<div>Hello Todo</div>
+<div id="todo">
+    <div>Todo</div>
+    <div>
+        <input type="text" placeholder="what needs to be done" [(ngModel)]="todo.item">
+        <button (click)="addTodo(todo)">+</button>
+        <div *ngFor="let todo of todoList">
+            <add-todo [todo]="todo"></add-todo>
+        </div>
+    </div>
+</div>
