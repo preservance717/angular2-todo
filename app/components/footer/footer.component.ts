@@ -7,15 +7,22 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
                <button (click)="getTodos('ALL')">All</button>
                <button (click)="getTodos('ACTIVE')">Active</button>
                <button (click)="getTodos('COMPLETE')">Complete</button>
+               <a href="javascript:;" (click)="clearComplete()" *ngIf="completeTodoList.length>0">Clear Complete</a>
                </div>`
 })
 
 export class FooterComponent implements Input {
     @Input() todoList;
     @Input() leftTodoList;
+    @Input() completeTodoList;
     @Output() onGetTodos = new EventEmitter();
+    @Output() onClearComplete = new EventEmitter();
 
-    getTodos(state: string) {
+    getTodos(state:string){
         this.onGetTodos.emit(state);
+    }
+
+    clearComplete(){
+        this.onClearComplete.emit();
     }
 }

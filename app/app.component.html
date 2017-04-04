@@ -7,7 +7,13 @@
             <add-todo [todo]="todo" (onDelete)="deleteTodo($event)" (onToggle)="toggle($event)"></add-todo>
         </div>
         <div>
-            <foot [todoList]="viewTodoList" [leftTodoList]="leftTodoList" (onGetTodos)="getTodos($event)"></foot>
+            <foot
+                    [todoList]="todoList"
+                    [leftTodoList]="leftTodoList"
+                    [completeTodoList]="completeTodoList"
+                    (onGetTodos)="getTodos($event)"
+                    (onClearComplete)="clearComplete()"
+            ></foot>
         </div>
     </div>
 </div>
