@@ -8,6 +8,7 @@ import {Component} from '@angular/core';
 export class AppComponent {
     private todo = new Todo();
     private todoList: any = [];
+    private leftTodoList: any = [];
     private lastId:number = 0;
 
     addTodo(todo: Todo) {
@@ -17,11 +18,33 @@ export class AppComponent {
             this.todoList.push(todo);
             this.todoList.reverse();
         }
+        this.leftTodoList = this.todoList;
         this.todo = new Todo();
     }
 
     deleteTodo(id: number) {
         this.todoList = this.todoList.filter(todo => todo.id != id);
+
+        this.leftTodoList = this.leftTodo(this.todoList);
+    }
+
+    toggle(todo:Todo){
+        todo.isDone = !todo.isDone;
+        this.todoList[this.todoList.indexOf(todo)].isDone = todo.isDone;
+
+        this.leftTodoList = this.leftTodo(this.todoList);
+    }
+
+    leftTodo(todoList:any){
+        let todos = [];
+
+        todoList.forEach((todo) => {
+            if (!todo.isDone) {
+                todos.push(todo);
+            }
+        });
+
+        return todos;
     }
 }
 

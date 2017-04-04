@@ -4,10 +4,10 @@
         <input type="text" placeholder="what needs to be done" [(ngModel)]="todo.item">
         <button (click)="addTodo(todo)">+</button>
         <div *ngFor="let todo of todoList">
-            <add-todo [todo]="todo" (onDelete)="deleteTodo($event)"></add-todo>
+            <add-todo [todo]="todo" (onDelete)="deleteTodo($event)" (onToggle)="toggle($event)"></add-todo>
         </div>
         <div>
-            <foot [todoList]="todoList"></foot>
+            <foot [todoList]="todoList" [leftTodoList]="leftTodoList"></foot>
         </div>
     </div>
 </div>
