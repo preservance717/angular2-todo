@@ -9,7 +9,8 @@ export class AppComponent {
     private todo = new Todo();
     private todoList: any = [];
     private leftTodoList: any = [];
-    private lastId:number = 0;
+    private viewTodoList: any = [];
+    private lastId: number = 0;
 
     addTodo(todo: Todo) {
         if (!todo.id && todo.item) {
@@ -18,24 +19,23 @@ export class AppComponent {
             this.todoList.push(todo);
             this.todoList.reverse();
         }
-        this.leftTodoList = this.todoList;
+        this.viewTodoList = this.leftTodoList = this.todoList;
         this.todo = new Todo();
     }
 
     deleteTodo(id: number) {
-        this.todoList = this.todoList.filter(todo => todo.id != id);
-
+        this.viewTodoList = this.todoList = this.todoList.filter(todo => todo.id != id);
         this.leftTodoList = this.leftTodo(this.todoList);
     }
 
-    toggle(todo:Todo){
+    toggle(todo: Todo) {
         todo.isDone = !todo.isDone;
         this.todoList[this.todoList.indexOf(todo)].isDone = todo.isDone;
 
         this.leftTodoList = this.leftTodo(this.todoList);
     }
 
-    leftTodo(todoList:any){
+    leftTodo(todoList: any) {
         let todos = [];
 
         todoList.forEach((todo) => {
@@ -46,6 +46,17 @@ export class AppComponent {
 
         return todos;
     }
+
+    getTodos(status: string) {
+        if (status === 'ALL') {
+            this.viewTodoList = this.todoList;
+        } else if (status === 'ACTIVE') {
+            this.viewTodoList = this.todoList.filter(todo => todo.isDone === false);
+        } else if (status === 'COMPLETE') {
+            this.viewTodoList = this.todoList.filter(todo => todo.isDone === true);
+        }
+    }
+
 }
 
 export class Todo {
