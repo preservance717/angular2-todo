@@ -10,7 +10,6 @@ export class AppComponent {
     private todoList: any = [];
     private leftTodoList: any = [];
     private viewTodoList: any = [];
-    private completeTodoList: any = [];
     private lastId: number = 0;
 
     addTodo(todo: Todo) {
@@ -27,14 +26,12 @@ export class AppComponent {
     deleteTodo(id: number) {
         this.viewTodoList = this.todoList = this.todoList.filter(todo => todo.id != id);
         this.leftTodoList = this.leftTodo(this.todoList, false);
-        this.completeTodoList = this.leftTodo(this.todoList, true);
     }
 
     toggle(todo: Todo) {
         todo.isDone = !todo.isDone;
         this.todoList[this.todoList.indexOf(todo)].isDone = todo.isDone;
         this.leftTodoList = this.leftTodo(this.todoList, false);
-        this.completeTodoList = this.leftTodo(this.todoList, true);
     }
 
     leftTodo(todoList: any, isDone:boolean) {
