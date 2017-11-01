@@ -3,9 +3,10 @@
     <div>
         <input type="text" placeholder="what needs to be done" [(ngModel)]="todo.item">
         <button (click)="addTodo(todo)">+</button>
-        <div *ngFor="let todo of viewTodoList">
-            <add-todo [todo]="todo" (onDelete)="deleteTodo($event)" (onToggle)="toggle($event)"></add-todo>
-        </div>
+        <add-todo [todos]="viewTodoList" (onDelete)="deleteTodo($event)" (onToggle)="toggle($event)"></add-todo>
+        <!--<div *ngFor="let todo of viewTodoList">-->
+            <!--<add-todo [todo]="todo" (onDelete)="deleteTodo($event)" (onToggle)="toggle($event)"></add-todo>-->
+        <!--</div>-->
         <div>
             <foot
                     [todoList]="todoList"
